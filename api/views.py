@@ -72,7 +72,7 @@ def deleteNote(request, pk):
 def createNote(request):
     data = request.data
     note = Note.objects.create(
-        body=data['body']
+        body=data.get('body', '')
     )
     serializer = NoteSerializer(note, many=False)
     return Response(serializer.data)

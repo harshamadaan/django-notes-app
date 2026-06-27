@@ -6,7 +6,7 @@ import { ReactComponent as ArrowLeft } from '../assets/arrow-left.svg'
 const NotePage = () => {
   let { id }  = useParams();
   let navigate = useNavigate()
-  let [note, setNote] = useState({})
+let [note, setNote] = useState({ body: "" })
   useEffect(() => {
     let getNote = async () => {
       if (id === 'new') return
@@ -71,8 +71,11 @@ const NotePage = () => {
         )}
       </div>
       <div className="note-body">
-        <textarea onChange={(e) => {setNote({...note, 'body':e.target.value})}} value={note.body}>  
-        </textarea>
+       <textarea
+  placeholder="Write your note here..."
+  onChange={(e) => setNote({ ...note, body: e.target.value })}
+  value={note.body || ""}>
+</textarea>
       </div>
     </div>
   )
